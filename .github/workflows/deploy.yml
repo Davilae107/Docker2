@@ -62,14 +62,14 @@ jobs:
     - name: 🔑 Login to Docker Hub
       uses: docker/login-action@v3
       with:
-        username: ${{ env.DOCKER_USERNAME }}
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_TOKEN }}
         
     - name: 🏷️ Extract metadata
       id: meta
       uses: docker/metadata-action@v5
       with:
-        images: ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}
+        images: ${{ env.DOCKER_REGISTRY }}/${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_NAME }}
         tags: |
           type=ref,event=branch
           type=ref,event=pr
@@ -94,14 +94,14 @@ jobs:
     - name: 🔐 Generate SBOM
       uses: anchore/sbom-action@v0
       with:
-        image: ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
+        image: ${{ env.DOCKER_REGISTRY }}/${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest
         format: spdx-json
         output-file: sbom.spdx.json
         
     - name: 🛡️ Scan image for vulnerabilities
       uses: anchore/scan-action@v3
       with:
-        image: ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
+        image: ${{ env.DOCKER_REGISTRY }}/${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest
         fail-build: false
         
     - name: 📊 Docker image info
