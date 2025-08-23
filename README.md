@@ -1,11 +1,13 @@
 # 🌟 Hola Mundo - Aplicación DevOps
 
-Una aplicación web simple "Hola Mundo" construida con Node.js y Express, dockerizada y lista para despliegue.
+Una aplicación web simple "Hola Mundo" construida con Node.js y Express, dockerizada y con CI/CD completo usando GitHub Actions, Docker Hub y Render.com.
 
 ## 🚀 Características
 
 - **Framework**: Node.js + Express
 - **Dockerizada**: Lista para contenedores
+- **CI/CD**: GitHub Actions automatizado
+- **Deploy**: Automático a Render.com
 - **Health Check**: Endpoint de monitoreo incluido
 - **API REST**: Endpoint simple para pruebas
 - **Responsive**: Interfaz web moderna y responsive
@@ -14,7 +16,9 @@ Una aplicación web simple "Hola Mundo" construida con Node.js y Express, docker
 
 - Node.js 18+ (para desarrollo local)
 - Docker (para contenedorización)
-- Docker Hub account (para subir imagen)
+- Cuenta Docker Hub (para registry)
+- Cuenta Render.com (para deploy)
+- GitHub repository (para CI/CD)
 
 ## 🛠️ Instalación y Uso
 
@@ -48,13 +52,28 @@ docker run -p 3000:3000 hola-mundo-app
 - **GET /health** - Health check para monitoreo
 - **GET /api/mensaje** - API REST simple
 
-## 🐳 Docker Hub
+## � CI/CD Pipeline
+
+### GitHub Actions Workflow
+```
+Push/PR → Build & Test → Docker Build & Push → Deploy to Render → Health Check
+```
+
+### Configuración
+1. **Secrets en GitHub**:
+   - `DOCKER_HUB_TOKEN`
+   - `RENDER_API_KEY`
+   - `RENDER_SERVICE_ID`
+
+2. **Ver documentación completa**: [CI-CD-SETUP.md](CI-CD-SETUP.md)
+
+## �🐳 Docker Hub
 
 Esta imagen está disponible en Docker Hub:
 
 ```bash
 # Descargar y ejecutar desde Docker Hub
-docker run -p 3000:3000 [tu-usuario]/hola-mundo-app:latest
+docker run -p 3000:3000 dockerdav11/holamundodavila:latest
 ```
 
 ## 📊 Estructura del Proyecto

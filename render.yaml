@@ -1,0 +1,26 @@
+# Render.com Configuration
+# Este archivo puede ser usado como referencia para configurar el servicio en Render
+
+services:
+  - type: web
+    name: hola-mundo-devops
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: oregon
+    branch: main
+    numInstances: 1
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+    autoDeploy: true
+    
+# Configuración de dominio personalizado (opcional)
+# domains:
+#   - name: tu-dominio.com
+#     type: apex
+#   - name: www.tu-dominio.com
+#     type: www
