@@ -2,6 +2,8 @@
 
 Una aplicación web simple "Hola Mundo" construida con Node.js y Express, dockerizada y con CI/CD completo usando GitHub Actions, Docker Hub y Render.com.
 
+🎯 **Pipeline CI/CD totalmente automatizado** - Ready for deployment!
+
 ## 🚀 Características
 
 - **Framework**: Node.js + Express
